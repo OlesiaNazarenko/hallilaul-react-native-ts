@@ -1,0 +1,6 @@
+export const SET_TOCKEN: string = "auth/SET_TOCKEN"
+export const GET_TOCKEN: string = "auth/GET_TOCKEN"
+export const REFRESH_TOCKEN: string = "auth/REFRESH_TOCKEN"
+export const GET_USER: string = "auth/GET_USER"
+export const LOG_IN: string = "auth/LOG_IN"
+export const SET_IS_LOG_IN: string = "auth/SET_IS_LOG_IN"

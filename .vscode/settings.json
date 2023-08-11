@@ -1,0 +1,14 @@
+{
+  "code-runner.executorMap": {
+    "javascript": "node",
+    "typescript": "ts-node"
+  },
+  "code-runner.executorMapByFileExtension": {
+    ".js": "node",
+    ".jsx": "node",
+    ".ts": "ts-node",
+    ".tsx": "ts-node"
+  },
+  "terminal.integrated.automationProfile.osx": {},
+  "terminal.integrated.defaultProfile.osx": "zsh"
+}
