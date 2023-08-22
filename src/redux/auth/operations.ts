@@ -1,19 +1,22 @@
 import axios from "axios"
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import Config from "react-native-config"
 import {
   AuthConfiguration,
   AuthorizeResult,
   authorize,
 } from "react-native-app-auth"
+import {
+  REACT_APP_SPOTIFY_CLIENT_ID,
+  REACT_APP_SPOTIFY_CLIENT_SECRET,
+} from "@env"
 import { GET_TOCKEN, LOG_IN, REFRESH_TOCKEN } from "./constants"
 import { TokenType } from "./selectors"
 
-console.log(Config)
+console.log(REACT_APP_SPOTIFY_CLIENT_ID)
 export const login = createAsyncThunk(LOG_IN, async (_, thunkAPI) => {
   try {
     const loginConfig: AuthConfiguration = {
-      clientId: Config.SPOTIFY_CLIENT_ID ?? "",
+      clientId: REACT_APP_SPOTIFY_CLIENT_ID ?? "",
       redirectUrl: "org.reactjs.native.example.fresh://auth/callback",
       scopes: ["user-read-private", "user-read-email"],
       serviceConfiguration: {
@@ -41,9 +44,9 @@ export const getToken = createAsyncThunk(
           params: {
             grant_type: "authorization_code",
             code: authorizationCode,
-            redirect_uri: "org.reactjs.native.example.fresh://auth/callback",
-            client_id: Config.SPOTIFY_CLIENT_ID,
-            client_secret: Config.SPOTIFY_CLIENT_SECRET,
+            redirect_uri: "spotify-ios-quick-start://auth/callback",
+            client_id: REACT_APP_SPOTIFY_CLIENT_ID,
+            client_secret: REACT_APP_SPOTIFY_CLIENT_SECRET,
           },
         }
       )
@@ -68,8 +71,8 @@ export const refreshAccessToken = createAsyncThunk(
           params: {
             grant_type: "refresh_token",
             refresh_token: refreshToken,
-            client_id: Config.SPOTIFY_CLIENT_ID,
-            client_secret: Config.SPOTIFY_CLIENT_SECRET,
+            client_id: REACT_APP_SPOTIFY_CLIENT_ID,
+            client_secret: REACT_APP_SPOTIFY_CLIENT_SECRET,
           },
         }
       )

@@ -20,6 +20,25 @@
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLName</key>
+	<string>org.reactjs.native.example.fresh</string>
+	<key>CFBundleURLSchemes</key>
+	<array>
+		<string>org.reactjs.native.example.fresh</string>
+	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>org.reactjs.native.example.fresh</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>org.reactjs.native.example.fresh</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSRequiresIPhoneOS</key>
@@ -30,14 +49,14 @@
 		<dict>
 			<key>localhost</key>
 			<dict>
+				<key>NSAllowsArbitraryLoads</key>
+				<true/>
+				<key>NSAllowsArbitraryLoadsInWebContent</key>
+				<true/>
+				<key>NSAllowsLocalNetworking</key>
+				<true/>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
-				<key>NSAllowsArbitraryLoads</key>
-        		<true/>
-        		<key>NSAllowsArbitraryLoadsInWebContent</key>
-        		<true/>
-        		<key>NSAllowsLocalNetworking</key>
-        		<true/>
 			</dict>
 		</dict>
 	</dict>
