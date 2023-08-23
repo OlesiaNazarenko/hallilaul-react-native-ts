@@ -1,5 +1,6 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
-/* eslint-disable no-return-assign */
+
 import { createAction, createSlice } from "@reduxjs/toolkit"
 
 export type LanguageState = LanguageStateItem[]
@@ -26,12 +27,22 @@ const languageSlice = createSlice({
   name: "language",
   initialState,
   reducers: {
-    toggleLanguage: (state) => {
-      state.map((item: LanguageStateItem) => (item.enabled = !item.enabled))
+    toggleLanguage: (state, action: { payload: LanguageStateItem }) => {
+      state.map((item: LanguageStateItem) => {
+        const newLanguage = action.payload.languageCode
+
+        if (item.languageCode === newLanguage) {
+          item.enabled = true
+        } else {
+          item.enabled = false
+        }
+      })
     },
   },
 })
 
-export const toggleLanguage = createAction<void>("language/toggleLanguage")
+export const toggleLanguage = createAction<LanguageStateItem>(
+  "language/toggleLanguage"
+)
 
 export default languageSlice.reducer

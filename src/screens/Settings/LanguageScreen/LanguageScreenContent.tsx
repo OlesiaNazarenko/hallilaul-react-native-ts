@@ -48,7 +48,7 @@ export function LanguageScreenContent({
         {languages.map((item: LanguageStateItem) => (
           <TouchableOpacity
             key={item.languageCode}
-            onPress={() => dispatch(toggleLanguage())}
+            onPress={() => dispatch(toggleLanguage(item))}
           >
             <RadioButtonRow
               enabled={item.enabled}
