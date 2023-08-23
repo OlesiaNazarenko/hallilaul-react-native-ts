@@ -12,7 +12,6 @@ import {
 import { GET_TOCKEN, LOG_IN, REFRESH_TOCKEN } from "./constants"
 import { TokenType } from "./selectors"
 
-console.log(REACT_APP_SPOTIFY_CLIENT_ID)
 export const login = createAsyncThunk(LOG_IN, async (_, thunkAPI) => {
   try {
     const loginConfig: AuthConfiguration = {
@@ -25,7 +24,6 @@ export const login = createAsyncThunk(LOG_IN, async (_, thunkAPI) => {
       },
     }
     const result: AuthorizeResult = await authorize(loginConfig)
-    console.log(loginConfig)
     return result
   } catch (error) {
     console.error("Spotify Login Error:", error)

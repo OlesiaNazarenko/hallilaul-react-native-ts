@@ -43,13 +43,10 @@ export function ModeScreenContent({
         {modes.map(
           (item: { name: string; default: boolean }, index: number) => (
             <TouchableOpacity
+              key={item.name}
               onPress={() => {
-                dispatch(
-                  toggleTheme({
-                    payload: index === 0 ? "Dark" : "Light",
-                    type: "theme/toggleTheme",
-                  })
-                )
+                const newThemeName: string = index === 0 ? "Dark" : "Light"
+                return dispatch(toggleTheme(newThemeName))
               }}
             >
               <RadioButtonRow

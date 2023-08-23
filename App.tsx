@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect } from "react"
 import { I18nextProvider } from "react-i18next"
 import { SafeAreaProvider } from "react-native-safe-area-context"
 import { Provider } from "react-redux"
@@ -34,7 +34,6 @@ const AppContext = () => {
   const themeType = useAppSelector<Theme>(getDefaultThemeSelector)
   const lightTheme = useAppSelector<ThemeColor>(getLightThemePalleteSelector)
   const darkTheme = useAppSelector<ThemeColor>(getDarkThemePalleteSelector)
-
   const refreshAccessTokenData = useAppSelector<TokenType>(
     getRefresnTokenSelector
   )
@@ -45,13 +44,8 @@ const AppContext = () => {
   const currentLanguageCode = useAppSelector<LanguageCodeType>(
     getCurrentLanguageCodeSelector
   )
-  const [currentTheme, setCurrentTheme] = useState<ThemeColor>(() =>
-    themeType.name === "Dark" ? darkTheme : lightTheme
-  )
-  const getCurrentTheme = () =>
-    themeType.name === "Dark"
-      ? setCurrentTheme(darkTheme)
-      : setCurrentTheme(lightTheme)
+
+  const getCurrentTheme = themeType?.name === "Dark" ? darkTheme : lightTheme
 
   useEffect(() => {
     i18n.changeLanguage(currentLanguageCode)
@@ -62,11 +56,6 @@ const AppContext = () => {
       dispatch(userLogOut())
     }
   }, [token, dispatch])
-
-  useEffect(() => {
-    getCurrentTheme()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [themeType])
 
   useEffect(() => {
     const currentTime = Date.now()
@@ -81,7 +70,7 @@ const AppContext = () => {
 
   return (
     <I18nextProvider i18n={i18n}>
-      <ThemeProvider theme={currentTheme}>
+      <ThemeProvider theme={getCurrentTheme}>
         <SafeAreaProvider>
           <NavigationStack />
         </SafeAreaProvider>

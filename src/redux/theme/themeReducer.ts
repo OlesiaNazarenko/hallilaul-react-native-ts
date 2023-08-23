@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-param-reassign */
 import { PayloadAction, createAction, createSlice } from "@reduxjs/toolkit"
 import { DarkModeColorTheme, LightModeColorTheme } from "../../utils/theme"
@@ -31,8 +32,10 @@ const themeSlice = createSlice({
   initialState,
   reducers: {
     toggleTheme: (state, action: PayloadAction<string>) => {
-      state.themes.forEach((item) => {
-        if (item.name === action.payload) {
+      const newThemeName = action.payload
+
+      state.themes.map((item: Theme) => {
+        if (item.name === newThemeName) {
           item.default = true
         } else {
           item.default = false
@@ -42,7 +45,6 @@ const themeSlice = createSlice({
   },
 })
 
-type ToggleThemeAction = PayloadAction<string>
-export const toggleTheme = createAction<ToggleThemeAction>("theme/toggleTheme")
+export const toggleTheme = createAction<string>("themes/toggleTheme")
 
 export default themeSlice.reducer
