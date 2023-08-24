@@ -1,1 +1,1 @@
-export const SWITCH_LANGUAGE: string = "SWITCH_LANGUAGE"
+export const SWITCH_LANGUAGE = "SWITCH_LANGUAGE"

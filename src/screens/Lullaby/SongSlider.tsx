@@ -10,7 +10,9 @@ interface SongSliderProps {
   duration: string
   position: string
   timeLeft: string
-  seekTo: Function
+  seekTo: (e: number) => {
+    void(e: number): number
+  }
 }
 
 const SliderContainer = styled.View`

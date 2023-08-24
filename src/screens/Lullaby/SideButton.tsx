@@ -7,7 +7,7 @@ import { BodyTinyText } from "../../components/typography/bodyText"
 interface SideButtonProps {
   text: string
   strokeColor: string
-  onPress: Function
+  onPress: () => void
 }
 
 const TextButtonStyled = styled.TouchableOpacity`

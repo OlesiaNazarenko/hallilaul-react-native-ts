@@ -7,17 +7,17 @@ interface ButtonSourceProps {
   label: string
   color: string
   background: string
-  onPressIn: Function
+  onPressIn: () => void
   icon?: boolean
 }
 interface ButtonSourceStyledProps {
   background: string
 }
 interface ButtonSourceSecondaryProps {
-  label: String
+  label: string
   color: string
   background: string
-  onPressIn: Function
+  onPressIn: () => void
 }
 
 interface ButtonSourceSecondaryStyledProps {

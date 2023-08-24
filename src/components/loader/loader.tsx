@@ -3,7 +3,7 @@ import styled from "styled-components/native"
 import LottieView from "lottie-react-native"
 
 interface LoaderProps {
-  onAnimationFinish?: Function
+  onAnimationFinish?: () => void
 }
 
 const LoaderView = styled.View`

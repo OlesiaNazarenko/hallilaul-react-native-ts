@@ -37,7 +37,7 @@ export function SpotifyPlayer({
   const TrackPlayerEvents = new NativeEventEmitter(TrackPlayerModule)
 
   async function setupPlayer(): Promise<boolean> {
-    let isSetup: boolean = false
+    let isSetup = false
     try {
       await TrackPlayer.getCurrentTrack()
       isSetup = true

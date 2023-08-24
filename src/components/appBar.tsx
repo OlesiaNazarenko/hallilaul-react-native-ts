@@ -17,7 +17,12 @@ interface AppBarProps {
 }
 
 interface StyledProps {
-  alignment: Function
+  alignment: () =>
+    | "flex-start"
+    | "center"
+    | "flex-end"
+    | "space-between"
+    | "space-around"
 }
 
 const AppBarStyled = styled.View<StyledProps>`
