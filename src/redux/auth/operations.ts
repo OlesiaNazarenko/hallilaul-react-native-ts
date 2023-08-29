@@ -1,3 +1,4 @@
+import { Platform } from "react-native"
 import axios from "axios"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 import {
@@ -13,10 +14,14 @@ import { GET_TOCKEN, LOG_IN, REFRESH_TOCKEN } from "./constants"
 import { TokenType } from "./selectors"
 
 export const login = createAsyncThunk(LOG_IN, async (_, thunkAPI) => {
+  const redirectUrl = Platform.select({
+    ios: "org.reactjs.native.example.fresh://auth/callback",
+    android: "com.fresh://auth/callback",
+  })
   try {
     const loginConfig: AuthConfiguration = {
       clientId: REACT_APP_SPOTIFY_CLIENT_ID ?? "",
-      redirectUrl: "org.reactjs.native.example.fresh://auth/callback",
+      redirectUrl: redirectUrl ?? "",
       scopes: ["user-read-private", "user-read-email"],
       serviceConfiguration: {
         authorizationEndpoint: "https://accounts.spotify.com/authorize",
@@ -24,6 +29,8 @@ export const login = createAsyncThunk(LOG_IN, async (_, thunkAPI) => {
       },
     }
     const result: AuthorizeResult = await authorize(loginConfig)
+    console.log("res", result)
+
     return result
   } catch (error) {
     console.error("Spotify Login Error:", error)
@@ -48,7 +55,6 @@ export const getToken = createAsyncThunk(
           },
         }
       )
-
       const { access_token: accessToken } = response.data
       return accessToken
     } catch (error) {

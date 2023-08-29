@@ -33,8 +33,6 @@ export function SpotifyPlayer({
   const { position } = useProgress()
   const { duration } = useProgress()
   const timeLeft: string = (duration - position).toFixed(2)
-  const { TrackPlayerModule } = NativeModules
-  const TrackPlayerEvents = new NativeEventEmitter(TrackPlayerModule)
 
   async function setupPlayer(): Promise<boolean> {
     let isSetup = false
@@ -63,6 +61,8 @@ export function SpotifyPlayer({
         progressUpdateEventInterval: 2,
       })
       if (Platform.OS === "ios") {
+        const { TrackPlayerModule } = NativeModules
+        const TrackPlayerEvents = new NativeEventEmitter(TrackPlayerModule)
         TrackPlayerEvents.emit("setCategory", {
           category: IOSCategory.Playback,
           options: [
